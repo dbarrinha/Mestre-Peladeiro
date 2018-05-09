@@ -80,8 +80,8 @@ class UsuarioDao {
          $con->close();
          return $arrayUsuario;
       }else{
-         $erro = $stmt->errno.' - '.$stmt->error;
-         return $erro;
+         echo $erro = $stmt->errno.' - '.$stmt->error;
+         return false;
       }
    }
  

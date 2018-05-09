@@ -1,4 +1,6 @@
-
+<?php
+        // put your code here
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -6,7 +8,7 @@
     </head>
     <body>
         <?php
-         echo "olá";
+        // put your code here
         ?>
     </body>
 </html>
