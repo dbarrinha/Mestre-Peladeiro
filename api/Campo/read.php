@@ -9,12 +9,9 @@ header("Content-Type: application/json; charset=UTF-8");
 include_once $_SERVER['DOCUMENT_ROOT'].'/dao/UsuarioDao.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/model/Usuario.php';
  
-// instantiate database and product object
-$database = new Database();
-$db = $database->getConnection();
- 
+
 // initialize object
-$product = new Product($db);
+$product = new Campo();
  
 // query products
 $stmt = $product->read();
