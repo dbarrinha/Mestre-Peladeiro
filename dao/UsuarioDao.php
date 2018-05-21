@@ -5,7 +5,7 @@ class UsuarioDao {
     public function atualizarUsuario($usuario){
         $con = ConexaoDao::getConexao();
         $query = "UPDATE usuario SET id_tipo_usuario=?, nome=?, sobrenome=?, "
-                . "rg=?, descricao=?, cpf=? ,email=? ,senha=? WHERE id=?";
+                . "rg=?, cpf=? ,email=? ,senha=? WHERE id=?";
         $stmt = $con->prepare($query);
         $stmt->bind_param("issssssi", $usuario['idTipo'], $usuario['nome'], 
                 $usuario['sobrenome'], $usuario['rg'],$usuario['cpf'], 
