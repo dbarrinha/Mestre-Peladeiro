@@ -1,25 +1,23 @@
 <?php
 
-class TipoUsuario {
-    private $id;
-    private $nome;
+class TipoUsuarioDao {
     
-    function getId() {
-        return $this->id;
-    }
-
-    function getNome() {
-        return $this->nome;
-    }
-
-    function setId($id) {
-        $this->id = $id;
-    }
-
-    function setNome($nome) {
-        $this->nome = $nome;
-    }
-
+    public function getTipoUsuarioById($id){
+      $con = ConexaoDao::getConexao();
+      $query = "SELECT * FROM tipo_usuario WHERE id=?";
+      $stmt = $con->prepare($query);
+      $stmt->bind_param("i", $id);
+      if($stmt->execute()===TRUE){
+         $result = $stmt->get_result();
+         $arrayDiaSemana = $result->fetch_assoc();
+         $stmt->close();
+         $con->close();
+         return $arrayDiaSemana;
+      }else{
+         $erro = $stmt->errno.' - '.$stmt->error;
+         return $erro;
+      }
+   }
 
 }
 
