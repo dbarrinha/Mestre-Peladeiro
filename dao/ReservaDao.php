@@ -69,5 +69,21 @@ class ReservaDao {
          return $erro;
       }
    }  
+   
+   public function getAll(){
+      $con = ConexaoDao::getConexao();
+      $query = "SELECT * FROM reserva ";
+      $stmt = $con->prepare($query);
+      if($stmt->execute()===TRUE){
+         $result = $stmt->get_result();
+         $arrayCampo = $result->fetch_all(MYSQLI_ASSOC);
+         $stmt->close();
+         $con->close();
+         return $arrayCampo;
+      }else{
+         $erro = $stmt->errno.' - '.$stmt->error;
+         return $erro;
+      }
+   } 
 
 }
