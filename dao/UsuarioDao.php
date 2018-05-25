@@ -7,14 +7,16 @@ class UsuarioDao {
         $query = "UPDATE usuario SET id_tipo_usuario=?, nome=?, sobrenome=?, "
                 . "rg=?, cpf=? ,email=? ,senha=? WHERE id=?";
         $stmt = $con->prepare($query);
-        $stmt->bind_param("issssssi", $usuario['idTipo'], $usuario['nome'], 
+        $stmt->bind_param("issssssi", $usuario['id_tipo_usuario'], $usuario['nome'], 
                 $usuario['sobrenome'], $usuario['rg'],$usuario['cpf'], 
                 $usuario['email'], $usuario['senha'],  $usuario['id']);
         if($stmt->execute()===TRUE){
+           echo $stmt->error;
             $stmt->close();
             $con->close();
             return TRUE;
         }else{
+           echo $stmt->error;
             $erro = $stmt->errno.' - '.$stmt->error;
             return $erro;
         }
@@ -24,7 +26,7 @@ class UsuarioDao {
         $con = ConexaoDao::getConexao();
         $query = "INSERT INTO usuario VALUES (NULL,?,?,?,?,?,?,?)";
         $stmt = $con->prepare($query);
-        $stmt->bind_param("issssss", $usuario['idTipo'], $usuario['nome'], 
+        $stmt->bind_param("issssss", $usuario['id_tipo_usuario'], $usuario['nome'], 
                 $usuario['sobrenome'], $usuario['rg'],$usuario['cpf'], 
                 $usuario['email'], $usuario['senha']);
         if($stmt->execute()===TRUE){

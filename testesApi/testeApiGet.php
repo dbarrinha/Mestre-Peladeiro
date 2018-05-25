@@ -1,16 +1,10 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/ultilitarios/funcoes_especiais.php';
+//$url = "http://starbit.000webhostapp.com/api/users.php";
+$url = "http://localhost/api/users.php";
 
-$url = 'http://localhost/api/users.php';//pode informar o id se quiser 
-$ch = curl_init($url);
-curl_setopt($ch, CURLOPT_HTTPGET, true);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-$response_json = curl_exec($ch);
-curl_close($ch);
-$response = json_decode($response_json, true);
-
-echo $response_json;
-
-/*foreach ($response as $user){
-    echo $user['nome'];
-}*/
-
+$variaveis = array(
+   'id'=>"3"
+);
+$metodo = "GET";
+echo fazer_requisicao($url, $variaveis, $metodo);

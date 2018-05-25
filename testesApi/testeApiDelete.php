@@ -1,9 +1,10 @@
 <?php
-$url = 'http://localhost/api/users.php?id=6';//tem que informar o id
-$ch = curl_init ($url); 
-curl_setopt ($ch, CURLOPT_CUSTOMREQUEST, 'DELETE'); 
-curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true); 
-$response_json = curl_exec ($ch); 
-curl_close ($ch); 
-$response = json_decode ($response_json, true);
-echo $response_json;
+require_once $_SERVER['DOCUMENT_ROOT'].'/ultilitarios/funcoes_especiais.php';
+//$url = "http://starbit.000webhostapp.com/api/users.php";
+$url = "http://localhost/api/users.php";
+
+$variaveis = array(
+    'id'=>"1"
+);
+$metodo = "DELETE";
+echo fazer_requisicao($url, $variaveis, $metodo);

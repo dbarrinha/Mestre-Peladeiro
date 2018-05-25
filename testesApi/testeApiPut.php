@@ -1,23 +1,19 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/ultilitarios/funcoes_especiais.php';
+//$url = "http://starbit.000webhostapp.com/api/users.php";
+$url = "http://localhost/api/users.php";
 
-
-$data = array ( 
-		'nome' => 'Atualizado', 
-		'sobrenome' => 'Sobrenome', 
-		'idTipo' => 1, 
-		'rg' => '5435345',
-                'cpf' => '53453453' ,
-                'email' => 'teste@gmail.com' ,
-                'senha' => '1234' 
-); 
-$url = 'http://localhost/api/users.php?id=6'; //tem que informar o id
-$ch = curl_init ($url); 
-curl_setopt ($ch, CURLOPT_CUSTOMREQUEST, "PUT"); 
-curl_setopt ($ch, CURLOPT_POSTFIELDS, http_build_query($data)); 
-curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true); 
-$response_json = curl_exec($ch); 
-curl_close ($ch); 
-$response = json_decode ($response_json, true);
-
-echo $response_json;
-
+$variaveis = array(
+   'id'=>"1",
+   'id_tipo_usuario'=>"1",
+   'nome'=>"Nome do usuário2",
+   'sobrenome'=>"Sobrenome2",
+   'rg'=>"12346",
+   'cpf'=>"78910",
+   'email'=>"email@emal.com",
+   'senha'=>"senha123",
+    
+    
+);
+$metodo = "PUT";
+echo fazer_requisicao($url, $variaveis, $metodo);
