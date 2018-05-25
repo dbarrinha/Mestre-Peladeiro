@@ -68,6 +68,22 @@ class CampoDao{
       }
    }
    
+   public function getAll(){
+      $con = ConexaoDao::getConexao();
+      $query = "SELECT * FROM view_campo";
+      $stmt = $con->prepare($query);
+      if($stmt->execute()===TRUE){
+         $result = $stmt->get_result();
+         $arrayCampo = $result->fetch_all(MYSQLI_ASSOC);
+         $stmt->close();
+         $con->close();
+         return $arrayCampo;
+      }else{
+         $erro = $stmt->errno.' - '.$stmt->error;
+         return $erro;
+      }
+   }
+   
    public function getCamposByEmpresa($idEmpresa){
       $con = ConexaoDao::getConexao();
       $query = "SELECT * FROM view_campo WHERE id_empresa=?";
